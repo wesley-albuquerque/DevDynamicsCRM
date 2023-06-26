@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>cf75b042-608e-4af2-8161-5841d8a7c364</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Wesley.Exercicios.SharedClass</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Arquitetura\ActionCore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Arquitetura\ConnectionWesExe2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Arquitetura\Enum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Arquitetura\PluginCore.cs" />
+  </ItemGroup>
+</Project>
