@@ -1,0 +1,10 @@
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Produtos\bin\Debug\Microsoft.Xrm.Tooling.Connector.dll
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Produtos\bin\Debug\Microsoft.Xrm.Tooling.Connector.xml
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Produtos\obj\Debug\Wesley.Exercicios.Produtos.Integracao.csproj.AssemblyReference.cache
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Produtos\obj\Debug\Wesley.Exercicios.Produtos.Integracao.csproj.CoreCompileInputs.cache
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Produtos\obj\Debug\Wesley.Exercicios.Produtos.Integracao.csproj.CopyComplete
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Produtos\bin\Debug\Wesley.Exercicios.Produtos.Integracao.dll.config
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Produtos\bin\Debug\Wesley.Exercicios.Produtos.Integracao.dll
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Produtos\bin\Debug\Wesley.Exercicios.Produtos.Integracao.pdb
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Produtos\obj\Debug\Wesley.Exercicios.Produtos.Integracao.dll
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Produtos\obj\Debug\Wesley.Exercicios.Produtos.Integracao.pdb
