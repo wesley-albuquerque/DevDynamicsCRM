@@ -1,0 +1,12 @@
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\bin\Debug\Wesley.Exercicios.Oportunidade.Integracao.dll.config
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\bin\Debug\Wesley.Exercicios.Oportunidade.Integracao.dll
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\bin\Debug\Wesley.Exercicios.Oportunidade.Integracao.pdb
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\bin\Debug\Microsoft.Xrm.Tooling.Connector.dll
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\bin\Debug\Microsoft.Xrm.Tooling.Connector.xml
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\obj\Debug\Wesley.Exercicios.Oportunidade.Integracao.csproj.AssemblyReference.cache
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\obj\Debug\Wesley.Exercicios.Oportunidade.Integracao.csproj.CoreCompileInputs.cache
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\obj\Debug\Wesley.Exercicios.Oportunidade.Integracao.csproj.CopyComplete
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\obj\Debug\Wesley.Exercicios.Oportunidade.Integracao.dll
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\obj\Debug\Wesley.Exercicios.Oportunidade.Integracao.pdb
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\bin\Debug\Microsoft.Xrm.Sdk.Deployment.dll
+C:\Users\wealb\source\repos\Wesley.Exercicios\Wesley.Exercicios.Oportunidade.Integracao\bin\Debug\Microsoft.Xrm.Sdk.Deployment.xml
