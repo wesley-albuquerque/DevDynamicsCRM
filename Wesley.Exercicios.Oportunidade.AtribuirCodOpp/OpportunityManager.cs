@@ -8,7 +8,7 @@ using Wesley.Exercicios.Oportunidade.AtribuirCodOpp.Controller;
 using Wesley.Exercicios.SharedClass;
 
 namespace Wesley.Exercicios.Oportunidade.AtribuirCodOpp
-{
+{ // Esse Plugin precisa ser executado em PreOperation
     public class OpportunityManager : PluginCore
     {
         public override void ExecutePlugin(IServiceProvider serviceProvider)

@@ -63,7 +63,7 @@ namespace Wesley.Exercicios.Oportunidade.AtribuirCodOpp.Model
             busca.ColumnSet.AddColumn("wes_cod_opp");
             busca.AddOrder("wes_cod_opp", OrderType.Descending);
             EntityCollection codigos = Service.RetrieveMultiple(busca);
-            CodigoOppOrigem = (codigos.Entities.FirstOrDefault()).Contains("wes_cod_opp") ? codigos.Entities.FirstOrDefault().Attributes["wes_cod_opp"].ToString() : null;
+            CodigoOppOrigem = codigos.Entities.Count > 0 ? codigos.Entities.FirstOrDefault().Attributes["wes_cod_opp"].ToString() : null;
         }
 
         public string AcrescerCodOpp(int termo2)

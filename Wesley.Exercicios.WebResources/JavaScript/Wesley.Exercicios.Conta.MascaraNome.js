@@ -1,7 +1,7 @@
-if (typeof (Wesley.Exercicios) == "undefined") { Wesley.Exercicios = {} }
-if (typeof (Wesley.Exercicios.Conta) == "undefined") { Wesley.Exercicios.Conta = {} }
+if (typeof (Wesley) == "undefined") { Wesley = {} }
+if (typeof (Wesley.ExerciciosNome) == "undefined") { Wesley.ExerciciosNome = {} }
 
-Wesley.Exercicios.Conta = {
+Wesley.ExerciciosNome = {
     OnChangeName: function (executionContext) {
         var formContext = executionContext.getFormContext();
         var name = formContext.getAttribute("name").getValue();

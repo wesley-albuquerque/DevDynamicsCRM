@@ -16,9 +16,9 @@ namespace Wesley.Exercicios.SharedClass.Arquitetura
         }
         public void GetService()
         {
-            string url = "wesleyexercicio002";
-            string clientId = "499b218e-07bb-4026-a6c6-ac1346f123e5";
-            string clientSecret = "eFk8Q~A0cTKOqFqsYezSuClYv9CzOM7j4No0yder";
+            string url = "org0c799842";
+            string clientId = "021dd5e6-4d1d-4057-87ad-4efc57470530";
+            string clientSecret = "jw18Q~3ER_QFkVBRPInvh4X3SJDfnN3BaLyzbboc";
             string stringConnection = $@"AuthType=ClientSecret;
                                       url=https://{url}.crm2.dynamics.com/;
                                       ClientId={clientId};

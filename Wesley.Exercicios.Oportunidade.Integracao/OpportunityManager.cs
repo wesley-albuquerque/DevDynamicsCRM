@@ -14,78 +14,88 @@ namespace Wesley.Exercicios.Oportunidade.Integracao
     {
         public override void ExecutePlugin(IServiceProvider serviceProvider)
         {
-            if (Context.MessageName.ToLower() == "create" || Context.MessageName.ToLower() == "update")
+            string log = "";
+
+            try
             {
-
-                Entity opportunity = Context.PostEntityImages["PostImage"];
-
-                ConnectionWesExe2 ambiente2 = new ConnectionWesExe2();
-
-                OppController controllerAmb1 = new OppController(Service);
-                //OppController controllerAmb2 = new OppController(Service);
-                OppController controllerAmb2 = new OppController(ambiente2.Service);
-
-                //Campos obrigatórios
-                var codMoeda = controllerAmb1.GetUniqueKeyById("transactioncurrency", "isocurrencycode", ((EntityReference)opportunity.Attributes["transactioncurrencyid"]).Id);
-                var MoedaId = controllerAmb2.GetIdByUniqueCode("transactioncurrency", "isocurrencycode", codMoeda);
-
-                var emailUsuario = controllerAmb1.GetUniqueKeyById("systemuser", "domainname", ((EntityReference)opportunity.Attributes["ownerid"]).Id);
-                var userId = controllerAmb2.GetIdByUniqueCode("systemuser", "domainname", emailUsuario);
-
-                //Campos não obrigatórios
-                if (opportunity.Contains("parentcontactid"))
+                if (Context.MessageName.ToLower() == "create" || Context.MessageName.ToLower() == "update")
                 {
-                    var cpfContato = controllerAmb1.GetUniqueKeyById("contact", "wes_cpf", ((EntityReference)opportunity.Attributes["parentcontactid"]).Id);
-                    var contactId = controllerAmb2.GetIdByUniqueCode("contact", "wes_cpf", cpfContato);
-                    if (contactId != Guid.Empty)
+                    Entity opportunity = Context.PostEntityImages["PostImage"];
+                    log += "- obteve o postImage";
+                    ConnectionWesExe2 ambiente2 = new ConnectionWesExe2();
+                    log += "- conectou no banco";
+
+                    OppController controllerAmb1 = new OppController(Service);
+                    //OppController controllerAmb2 = new OppController(Service);
+                    OppController controllerAmb2 = new OppController(ambiente2.Service);
+                    log += "- intanciou a controller2";
+
+                    //Campos obrigatórios
+                    var codMoeda = controllerAmb1.GetUniqueKeyById("transactioncurrency", "isocurrencycode", ((EntityReference)opportunity.Attributes["transactioncurrencyid"]).Id);
+                    var MoedaId = controllerAmb2.GetIdByUniqueCode("transactioncurrency", "isocurrencycode", codMoeda);
+
+                    var emailUsuario = controllerAmb1.GetUniqueKeyById("systemuser", "domainname", ((EntityReference)opportunity.Attributes["ownerid"]).Id);
+                    var userId = controllerAmb2.GetIdByUniqueCode("systemuser", "domainname", emailUsuario);
+
+                    //Campos não obrigatórios
+                    if (opportunity.Contains("parentcontactid"))
                     {
-                        opportunity.Attributes["parentcontactid"] = new EntityReference("contact", contactId);
-                        opportunity.Attributes["customerid"] = new EntityReference("contact", contactId);
+                        var cpfContato = controllerAmb1.GetUniqueKeyById("contact", "wes_cpf", ((EntityReference)opportunity.Attributes["parentcontactid"]).Id);
+                        var contactId = controllerAmb2.GetIdByUniqueCode("contact", "wes_cpf", cpfContato);
+                        if (contactId != Guid.Empty)
+                        {
+                            opportunity.Attributes["parentcontactid"] = new EntityReference("contact", contactId);
+                            opportunity.Attributes["customerid"] = new EntityReference("contact", contactId);
+
+                        }
+                        else
+                        {
+                            opportunity.Attributes.Remove("parentcontactid");
+                            opportunity.Attributes.Remove("customerid");
+                        }
+                    }
+                    if (opportunity.Contains("pricelevelid"))
+                    {
+                        var nomeLista = controllerAmb1.GetUniqueKeyById("pricelevel", "name", ((EntityReference)opportunity.Attributes["pricelevelid"]).Id);
+                        Guid ListaId = controllerAmb2.GetIdByUniqueCode("pricelevel", "name", nomeLista);
+                        if (ListaId != Guid.Empty)
+                        {
+                            opportunity.Attributes["pricelevelid"] = new EntityReference("pricelevel", ListaId);
+                        }
+                        else
+                            throw new InvalidPluginExecutionException($"Lista de preços inexistente no WesleyExercício2. Cadastrar a lista: \"{nomeLista}\" em WesleyExercício2");
+                    }
+
+                    opportunity.Attributes["transactioncurrencyid"] = new EntityReference("transactioncurrency", MoedaId);
+                    opportunity.Attributes["ownerid"] = new EntityReference("systemuser", userId);
+                    opportunity.Attributes["wes_integracao"] = true;
+
+                    if (Context.MessageName.ToLower() == "create")
+                    {
+                        ambiente2.Service.Create(opportunity); //ajustar aqui para ambiente2.Service.Create
 
                     }
                     else
                     {
-                        opportunity.Attributes.Remove("parentcontactid");
-                        opportunity.Attributes.Remove("customerid");
+                        Guid oppId = controllerAmb2.GetIdByUniqueCode("opportunity", "wes_cod_opp", opportunity.Attributes["wes_cod_opp"].ToString());
+                        opportunity.Id = oppId;
+                        ambiente2.Service.Update(opportunity); // ajustar aqui ambiente2.Service.Create
                     }
+
+
                 }
-                if (opportunity.Contains("pricelevelid"))
+                if (Context.MessageName.ToLower() == "delete")
                 {
-                    var nomeLista = controllerAmb1.GetUniqueKeyById("pricelevel", "name", ((EntityReference)opportunity.Attributes["pricelevelid"]).Id);
-                    Guid ListaId = controllerAmb2.GetIdByUniqueCode("pricelevel", "name", nomeLista);
-                    if (ListaId != Guid.Empty)
-                    {
-                        opportunity.Attributes["pricelevelid"] = new EntityReference("pricelevel", ListaId);
-                    }
-                    else
-                        throw new InvalidPluginExecutionException($"Lista de preços inexistente no WesleyExercício2. Cadastrar a lista: \"{nomeLista}\" em WesleyExercício2");
+                    Entity oppotunity = Context.PreEntityImages["PreImage"];
+                    ConnectionWesExe2 ambiente2 = new ConnectionWesExe2();
+                    OppController controllerAmb2 = new OppController(ambiente2.Service);
+                    Guid oppId = controllerAmb2.GetIdByUniqueCode("opportunity", "wes_cod_opp", oppotunity.Attributes["wes_cod_opp"].ToString());
+                    ambiente2.Service.Delete("opportunity", oppId);
                 }
-
-                opportunity.Attributes["transactioncurrencyid"] = new EntityReference("transactioncurrency", MoedaId);
-                opportunity.Attributes["ownerid"] = new EntityReference("systemuser", userId);
-                opportunity.Attributes["wes_integracao"] = true;
-
-                if(Context.MessageName.ToLower() == "create")
-                {
-                    ambiente2.Service.Create(opportunity);
-
-                }
-                else
-                {
-                    Guid oppId = controllerAmb2.GetIdByUniqueCode("opportunity", "wes_cod_opp", opportunity.Attributes["wes_cod_opp"].ToString());
-                    opportunity.Id = oppId;
-                    ambiente2.Service.Update(opportunity);
-                }
-
-                
             }
-            if (Context.MessageName.ToLower() == "delete")
+            catch (Exception ex)
             {
-                Entity oppotunity = Context.PreEntityImages["PreImage"];
-                ConnectionWesExe2 ambiente2 = new ConnectionWesExe2();
-                OppController controllerAmb2 = new OppController(ambiente2.Service);
-                Guid oppId = controllerAmb2.GetIdByUniqueCode("opportunity", "wes_cod_opp", oppotunity.Attributes["wes_cod_opp"].ToString());
-                ambiente2.Service.Delete("opportunity", oppId);
+                throw new Exception(ex + log);
             }
         }
     }

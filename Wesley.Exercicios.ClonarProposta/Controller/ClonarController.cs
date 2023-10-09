@@ -30,9 +30,9 @@ namespace Wesley.Exercicios.ClonarProposta.Controller
             return Quote.GetProductsByQuoteId(quoteId);
         }
 
-        public void ClonaProdutoOpp(Guid oppId, EntityCollection products)
+        public Guid ClonaProdutoOpp(Guid oppId, EntityCollection products)
         {
-            Opp.ClonaProdutoOpp(oppId, products);
+            return Opp.ClonaProdutoOpp(oppId, products);
         }
 
 

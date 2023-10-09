@@ -13,27 +13,31 @@ namespace Wesley.Exercicios.Oportunidade.AtribuirCodOpp.Model
     {
         public HttpClient Client { get; set; }
         public string Ambiente { get; set; }
-        public Guid OrganizationIdEx1 = new Guid("e2e88f9b-6bcb-ed11-aed0-6045bd3ad0ea");
+        public Guid OrganizationIdEx1 = new Guid("42aa77a4-7565-ee11-a383-002248debce1");
+        public string ClientID = "021dd5e6-4d1d-4057-87ad-4efc57470530";
+        public string ClientSecret = "jw18Q~3ER_QFkVBRPInvh4X3SJDfnN3BaLyzbboc";
+        public string IdLocatario = "c7b424b2-74c7-4650-935a-850982cdca85";
+
         public string Token { get; set; }
         public RequestAPI(Guid organizationId) 
         { 
             Client = new HttpClient();
             if(organizationId == OrganizationIdEx1)
             {
-                Ambiente = "wesleyexercicio2";
+                Ambiente = "org0c799842"; //Ambiente 2
             }
             else
-                Ambiente = "wesleyexercicio1";
+                Ambiente = "org835d2368"; //Ambiente 1
 
         }
         public void GetToken()
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://login.microsoftonline.com/a7844c97-0e99-42e9-b118-8b4d7e2a8345/oauth2/token");
+            var request = new HttpRequestMessage(HttpMethod.Post, $"https://login.microsoftonline.com/{IdLocatario}/oauth2/token");
             request.Headers.Add("Cookie", "fpc=Avom-BhPSu5Hks3TxUYQeIbrNjZnAQAAAMEowtsOAAAAfBQIwwEAAADvKMLbDgAAAEDKk8sCAAAAHCnC2w4AAAA; stsservicecookie=estsfd; x-ms-gateway-slice=estsfd");
             var collection = new List<KeyValuePair<string, string>>();
-            collection.Add(new KeyValuePair<string, string>("client_id", "17d7329f-d40e-4866-9b3d-10b9c433ebbb"));
+            collection.Add(new KeyValuePair<string, string>("client_id", ClientID));
             collection.Add(new KeyValuePair<string, string>("grant_type", "client_credentials"));
-            collection.Add(new KeyValuePair<string, string>("client_secret", "mw38Q~KQSXLEM8J9wZSDFQPE794kMB7Z9wBY-b3d"));
+            collection.Add(new KeyValuePair<string, string>("client_secret", ClientSecret));
             collection.Add(new KeyValuePair<string, string>("resource", $"https://{Ambiente}.crm2.dynamics.com/"));
             var content = new FormUrlEncodedContent(collection);
             request.Content = content;

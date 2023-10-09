@@ -46,7 +46,7 @@ namespace Wesley.Exercicios.ClonarProposta.Model
             NewOppId = Service.Create(novaOpp);
         }
 
-        public void ClonaProdutoOpp(Guid oppId, EntityCollection products)
+        public Guid ClonaProdutoOpp(Guid oppId, EntityCollection products)
         {
             OppId = oppId;
             GetPriceLevelIdByOppId();
@@ -69,6 +69,7 @@ namespace Wesley.Exercicios.ClonarProposta.Model
 
                 Service.Create(produto);
             }
+            return NewOppId;
         }
     }
 }

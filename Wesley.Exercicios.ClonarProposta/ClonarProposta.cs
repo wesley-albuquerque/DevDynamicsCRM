@@ -16,6 +16,9 @@ namespace Wesley.Exercicios.ClonarProposta
     {
         [Input("oppId")]
         public InArgument<string> OppId { get; set; }
+
+        [Output("newOppId")]
+        public OutArgument<string> NewOppId { get; set; }
         public override void ExecuteAction(CodeActivityContext context)
         {
             string log = "";
@@ -32,9 +35,11 @@ namespace Wesley.Exercicios.ClonarProposta
                     throw new InvalidWorkflowException("Não existe Cotação na Oportunidade selecionada. Crie a cotação antes de cloná-la.");
               
                 EntityCollection produtos = clonarController.GetProductsByQuoteId(proposta.Id);
-                clonarController.ClonaProdutoOpp(oppId, produtos);
+                Guid newOppId = clonarController.ClonaProdutoOpp(oppId, produtos);
+
+                NewOppId.Set(context, newOppId.ToString());
+               
  
-                log += " >Obteve os produtos";
     
 
             //} catch(Exception ex)
